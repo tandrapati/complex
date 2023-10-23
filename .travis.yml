@@ -1,0 +1,27 @@
+sudo: required
+services:
+  - docker
+
+before_install: 
+  - docker build -t vktandrapati/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true vktandrapati/react-test npm run test
+
+after_success: 
+  - docker build -t vktandrapati/multi-client ./client
+  - docker build -t vktandrapati/multi-server ./server
+  - docker build -t vktandrapati/multi-nginx ./nginx
+  - docker build -t vktandrapati/multi-worker ./worker
+
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-east-2"
+#   app: "docker-react"
+#   env: "Docker-react-env"
+#   bucket_name: "elasticbeanstalk-us-east-2-627016657995"
+#   bucket_path: "docker-react"
+#   on:
+#     branch: "main"
+#   access_key_id: "$AWS_ACCESS_KEY"
+#   secret_access_key: "$AWS_SECRET_KEY"
