@@ -9,15 +9,15 @@ script:
   - docker run -e CI=true vktandrapati/react-test npm run test
 
 after_success: 
-  - docker build -t vktandrapati/multi-client ./client
-  - docker build -t vktandrapati/multi-server ./server
-  - docker build -t vktandrapati/multi-nginx ./nginx
-  - docker build -t vktandrapati/multi-worker ./worker
+  - docker build -t tandrapati/multi-client ./client
+  - docker build -t tandrapati/multi-server ./server
+  - docker build -t tandrapati/multi-nginx ./nginx
+  - docker build -t tandrapati/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  - docker push vktandrapati/multi-client
-  - docker push vktandrapati/multi-server
-  - docker push vktandrapati/multi-nginx
-  - docker push vktandrapati/multi-worker
+  - docker push tandrapati/multi-client
+  - docker push tandrapati/multi-server
+  - docker push tandrapati/multi-nginx
+  - docker push tandrapati/multi-worker
 
 # deploy:
 #   provider: elasticbeanstalk
