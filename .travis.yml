@@ -13,6 +13,11 @@ after_success:
   - docker build -t vktandrapati/multi-server ./server
   - docker build -t vktandrapati/multi-nginx ./nginx
   - docker build -t vktandrapati/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push vktandrapati/multi-client
+  - docker push vktandrapati/multi-server
+  - docker push vktandrapati/multi-nginx
+  - docker push vktandrapati/multi-worker
 
 # deploy:
 #   provider: elasticbeanstalk
