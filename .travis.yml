@@ -19,14 +19,14 @@ after_success:
   - docker push tandrapati/multi-nginx
   - docker push tandrapati/multi-worker
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "us-east-2"
-#   app: "docker-react"
-#   env: "Docker-react-env"
-#   bucket_name: "elasticbeanstalk-us-east-2-627016657995"
-#   bucket_path: "docker-react"
-#   on:
-#     branch: "main"
-#   access_key_id: "$AWS_ACCESS_KEY"
-#   secret_access_key: "$AWS_SECRET_KEY"
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-627016657995'
+  bucket_path: 'docker-multi'
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
